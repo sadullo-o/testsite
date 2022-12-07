@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Mahsulot Olish
+{%endblock%}
+
+{% block content %}
+
+<div class="container">
+
+  <form>
+    <div class="mb-3">
+      <label for="firmanomi" class="form-label">Firma nomi</label>
+      <input type="text" class="form-control" name="firmanomi" id="firmanomi">
+    </div>
+    <div class="mb-3">
+      <label for="tovarnomi" class="form-label">Mahsaulot nomi</label>
+      <input type="text" class="form-control" name="tovarnomi" id="tovarnomi">
+    </div>
+        <div class="mb-3">
+      <label for="tovarolishnarxi" class="form-label">Mahsulot olosh narxi</label>
+      <input type="text" class="form-control" name="tovarolishnarxi" id="tovarolishnarxi">
+    </div>
+    <div class="mb-3">
+      <label for="sotishnarxi" class="form-label">Mahsulot sotish narxi</label>
+      <input type="text" class="form-control" name="sotishnarxi" id="sotishnarxi">
+    </div>
+    </div>
+        <div class="mb-3">
+      <label for="mahuslotnarxi" class="form-label">Mahsulot soni</label>
+      <input type="text" class="form-control" name="mahuslotnarxi" id="mahuslotnarxi">
+    </div>
+    <div class="mb-3">
+      <label for="jamimahuslotnarxi" class="form-label">Jami mahsulot narxi</label>
+      <input type="text" class="form-control" name="jamimahuslotnarxi" id="jamimahuslotnarxi">
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}

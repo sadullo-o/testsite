@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'mainn/style.css' %}" type="text/css" rel="stylesheet">
+    <title>My Test Site</title>
+</head>
+<body>
+<h1>
+  Hello everyone
+</h1>
+
+<a href="{% url 'about' %}">About</a>
+</body>
+</html>
