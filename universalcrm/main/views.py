@@ -11,7 +11,7 @@ def index(request):
 
 #fgfff
 
-
+#django test
 
 #hh
 
