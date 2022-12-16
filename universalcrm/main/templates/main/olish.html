@@ -7,6 +7,7 @@ Mahsulot Olish
 {% block content %}
 
 <div class="container">
+  <h1>Firmalardan magazinga mahsulot sotib olish</h1>
 
   <form>
     <div class="mb-3">
@@ -14,26 +15,45 @@ Mahsulot Olish
       <input type="text" class="form-control" name="firmanomi" id="firmanomi">
     </div>
     <div class="mb-3">
-      <label for="tovarnomi" class="form-label">Mahsaulot nomi</label>
+      <label for="tovarnomi" class="form-label">Mahsulot nomi</label>
       <input type="text" class="form-control" name="tovarnomi" id="tovarnomi">
     </div>
-        <div class="mb-3">
-      <label for="tovarolishnarxi" class="form-label">Mahsulot olosh narxi</label>
-      <input type="text" class="form-control" name="tovarolishnarxi" id="tovarolishnarxi">
+     <label for="tovarolishnarxi" class="form-label" >Mahsulot olish narxi</label>
+    <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control" name="tovarolishnarxi" id="tovarolishnarxi">
     </div>
-    <div class="mb-3">
+
       <label for="sotishnarxi" class="form-label">Mahsulot sotish narxi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
       <input type="text" class="form-control" name="sotishnarxi" id="sotishnarxi">
     </div>
-    </div>
-        <div class="mb-3">
+
+    <div class="mb-3">
       <label for="mahuslotnarxi" class="form-label">Mahsulot soni</label>
       <input type="text" class="form-control" name="mahuslotnarxi" id="mahuslotnarxi">
     </div>
-    <div class="mb-3">
-      <label for="jamimahuslotnarxi" class="form-label">Jami mahsulot narxi</label>
-      <input type="text" class="form-control" name="jamimahuslotnarxi" id="jamimahuslotnarxi">
+
+    <label for="jamimahuslotnarxi" class="form-label">Jami mahsulot narxi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" disabled name="jamimahuslotnarxi" id="jamimahuslotnarxi">
     </div>
+
+    <label for="berilganpul" class="form-label">Berilgan pul</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" name="berilganpul" id="berilganpul">
+    </div>
+    <label for="qarz" class="form-label">Qolgan qarz</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" disabled class="form-control" name="qarz" id="qarz">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Olish</button>
+
 
   </form>
 

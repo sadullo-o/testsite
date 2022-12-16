@@ -1,0 +1,111 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Mahsulot Olish
+{%endblock%}
+
+{% block content %}
+
+<div class="container">
+  <h1>Mahsulot sotish</h1>
+
+  <form method="post">
+
+    <div class="mb-3">
+      <label for="mijoz" class="form-label">Mijoz</label>
+      <input type="text" required class="form-control" name="xaridornomi" id="mijoz">
+    </div>
+    <label for="phone" class="form-label">Mijoz telelfon raqami</label>
+    <div class="input-group mb-3">
+       <span class="input-group-text">+998</span>
+      <input type="text" required class="form-control" name="phone" id="phone">
+    </div>
+    <div class="mb-3">
+
+      <label for="tovarnomi" class="form-label">Mahsulot nomi</label>
+      <select class="form-control" onchange="changeFunc(event)" name="tovarnomi" id="tovarnomi">
+        {% for i in sklad %}
+          <option>{{i.tovarnomi}}</option>
+        {% endfor %}
+      </select>
+
+    </div>
+      <label for="narx" class="form-label">Mahsulot narxi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" disabled name="tovarnarxi" id="narx">
+    </div>
+
+    <div class="mb-3">
+      <label for="mahuslotsoni" class="form-label">Mahsulot soni</label>
+      <input required type="number" oninput="hisob()" min="1" class="form-control" name="tovarsoni" id="mahuslotsoni">
+    </div>
+
+    <label for="jamimahuslotnarxi" class="form-label">Jami mahsulot narxi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="number" class="form-control" disabled name="jamitovarnarxi" id="jamimahuslotnarxi">
+    </div>
+
+    <label for="berilganpul" class="form-label">Berilgan pul</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="number" required oninput="hisob2()" class="form-control" name="berilganpul" id="berilganpul">
+    </div>
+    <label for="qarz" class="form-label">Qolgan qarz</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" disabled class="form-control" name="qarz" id="qarz">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sotish</button>
+
+
+  </form>
+
+
+</div>
+
+<script>
+<!--console.log('{{jsklad|escapejs}}')-->
+var sklad = "{{jsklad|escapejs}}"
+var tovarsoni = 0
+var array = JSON.parse(JSON.parse(JSON.stringify(sklad)))
+<!--console.log(JSON.parse(array))-->
+document.getElementById('narx').value = array[0]['fields']['tovarnarxi']
+
+function changeFunc(e){
+  document.getElementById('narx').value = array[e.target.selectedIndex]['fields']['tovarnarxi']
+  tovarsoni = array[e.target.selectedIndex]['fields']['tovarsoni']
+}
+
+function hisob(){
+if(document.getElementById('mahuslotsoni').value<0){
+  document.getElementById('mahuslotsoni').value = document.getElementById('mahuslotsoni').value * (-1)
+}
+if(parseInt(document.getElementById('mahuslotsoni').value)>parseInt(tovarsoni)){
+  document.getElementById('mahuslotsoni').value = tovarsoni
+}
+ document.getElementById('jamimahuslotnarxi').value = document.getElementById('mahuslotsoni').value * document.getElementById('narx').value
+}
+
+
+function hisob2(){
+if(document.getElementById('berilganpul').value<0){
+  document.getElementById('berilganpul').value = document.getElementById('berilganpul').value * (-1)
+}
+
+if(parseInt(document.getElementById('berilganpul').value) > parseInt(document.getElementById('jamimahuslotnarxi').value)){
+  document.getElementById('berilganpul').value = document.getElementById('jamimahuslotnarxi').value
+}
+
+ document.getElementById('qarz').value = document.getElementById('jamimahuslotnarxi').value - document.getElementById('berilganpul').value
+
+
+
+}
+
+
+</script>
+
+{% endblock %}

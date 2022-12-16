@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Sklad
+{%endblock%}
+
+{% block content %}
+
+
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Mahsulot nomi</th>
+      <th scope="col">Mahsulot narxi</th>
+      <th scope="col">Skladdagi mahsulot soni</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in sklad %}
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.tovarnomi}}</td>
+      <td>$ {{i.tovarnarxi}}</td>
+      <td>{{i.tovarsoni}}</td>
+    </tr>
+ {% endfor %}
+  </tbody>
+</table>
+
+</div>
+{% endblock %}
