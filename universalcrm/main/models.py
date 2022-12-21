@@ -22,7 +22,7 @@ class Sotish(models.Model):
     tovarnarxi = models.CharField(max_length=200)
     tovarsoni = models.CharField(max_length=200)
     jamitovarnarxi = models.CharField(max_length=200)
-    sotilgansana = models.DateField(auto_now=True)
+    sotilgansana = models.DateField(default=datetime.now())
     berilganpul = models.CharField(max_length=100)
     qarz = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)

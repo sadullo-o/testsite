@@ -10,7 +10,7 @@ Mahsulot Olish
   <h1>Mahsulot sotish</h1>
 
   <form method="post">
-
+    {% csrf_token %}
     <div class="mb-3">
       <label for="mijoz" class="form-label">Mijoz</label>
       <input type="text" required class="form-control" name="xaridornomi" id="mijoz">
@@ -33,7 +33,7 @@ Mahsulot Olish
       <label for="narx" class="form-label">Mahsulot narxi</label>
     <div class="input-group mb-3">
       <span class="input-group-text">$</span>
-      <input type="text" class="form-control" disabled name="tovarnarxi" id="narx">
+      <input type="text" class="form-control" readonly name="tovarnarxi" id="narx">
     </div>
 
     <div class="mb-3">
@@ -44,7 +44,7 @@ Mahsulot Olish
     <label for="jamimahuslotnarxi" class="form-label">Jami mahsulot narxi</label>
     <div class="input-group mb-3">
       <span class="input-group-text">$</span>
-      <input type="number" class="form-control" disabled name="jamitovarnarxi" id="jamimahuslotnarxi">
+      <input type="number" class="form-control" readonly name="jamitovarnarxi" id="jamimahuslotnarxi">
     </div>
 
     <label for="berilganpul" class="form-label">Berilgan pul</label>
@@ -55,7 +55,7 @@ Mahsulot Olish
     <label for="qarz" class="form-label">Qolgan qarz</label>
     <div class="input-group mb-3">
       <span class="input-group-text">$</span>
-      <input type="text" disabled class="form-control" name="qarz" id="qarz">
+      <input type="text" readonly class="form-control" name="qarz" id="qarz">
     </div>
 
     <button type="submit" class="btn btn-primary">Sotish</button>
@@ -63,6 +63,15 @@ Mahsulot Olish
 
   </form>
 
+  <div>
+{{error}}
+</div>
+
+    <div style="color: green">
+      <h1>
+{{success}}
+        </h1>
+</div>
 
 </div>
 
