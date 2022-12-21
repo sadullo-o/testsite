@@ -12,6 +12,17 @@ def main(request):
 def olish(request):
     return render(request, 'main/olish.html')
 
+def sklad(request):
+    sklad = Sklad.objects.all()
+    jsonsklad = serializers.serialize('json', sklad)
+    error = ''
+    success1 = ''
+    if request.method == 'POST':
+        mnomi = request.Post.get('Mahsulotnomi')
+        mnarxi = request.Post.get('Mahsulotnarxi')
+        smson = request.Post.get('Skalddagimahsulotson')
+        x = skald(Mahsulotnomi=mnomi, Mahsulotnarxi=mnarxi, Skalddagimahsulotson=smson )
+        x.save()
 def sotish(request):
     sklad = Sklad.objects.all()
     jsonsklad = serializers.serialize('json', sklad)
