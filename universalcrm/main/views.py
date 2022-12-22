@@ -33,12 +33,11 @@ def sklad(request):
         # qarz = request.Post.get('')
         # phone = request.Post.get(max_length=100)
         # sana = request.Post.get(default=datetime.now())
-
-
-
-
-
         x.save()
+        skladtovar = Sklad.objects.get(tovarnomi=tovarnomi)
+        skladtovar.tovarsoni = int(skladtovar.tovarsoni) + int(tovarsoni)
+        skladtovar.save()
+        success = 'Mahsulot sotildi'
         return redirect('sklad')
 
 
