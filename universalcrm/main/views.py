@@ -23,6 +23,8 @@ def sklad(request):
         smson = request.Post.get('Skalddagimahsulotson')
         x = skald(Mahsulotnomi=mnomi, Mahsulotnarxi=mnarxi, Skalddagimahsulotson=smson )
         x.save()
+
+
 def sotish(request):
     sklad = Sklad.objects.all()
     jsonsklad = serializers.serialize('json', sklad)
