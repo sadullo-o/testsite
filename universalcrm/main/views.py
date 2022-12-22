@@ -22,7 +22,24 @@ def sklad(request):
         mnarxi = request.Post.get('Mahsulotnarxi')
         smson = request.Post.get('Skalddagimahsulotson')
         x = skald(Mahsulotnomi=mnomi, Mahsulotnarxi=mnarxi, Skalddagimahsulotson=smson )
+        # firmanomi = request.Post.get('firmanomi')
+        # tovarnomi = request.Post.get('tovarnomi')
+        # tovarolishnarxi = request.Post.get('tovarolishnarxi')
+        # tovarsotishnarxi = request.Post.get('tovarsotishnarxi')
+        # tovarsoni = request.Post.get('tovarsoni')
+        # jamitovarnarxi = request.Post.get('jamitovarnarxi')
+        # olingansana = request.Post.get('olingansana')
+        # berilganpul = request.Post.get('berilganpul')
+        # qarz = request.Post.get('')
+        # phone = request.Post.get(max_length=100)
+        # sana = request.Post.get(default=datetime.now())
+
+
+
+
+
         x.save()
+        return redirect('sklad')
 
 
 def sotish(request):
