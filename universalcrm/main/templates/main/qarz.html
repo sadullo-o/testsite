@@ -1,0 +1,88 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Mijoz qarzini berishi
+{%endblock%}
+
+{% block content %}
+
+<div class="container">
+  <h1>Mijoz qarzini berishi</h1>
+
+  <form method="post">
+    {% csrf_token %}
+          <label for="mijoz" class="form-label">Mijoz nomi</label>
+      <select class="form-control" onchange="changeFunc(event)" name="xaridornomi" id="mijoz">
+        {% for i in qarzx %}
+          <option>{{i.xaridornomi}}</option>
+        {% endfor %}
+      </select>
+
+
+    <label for="qarzi" class="form-label">Qarzi</label>
+    <div class="mb-3 input-group">
+      <span class="input-group-text">$</span>
+      <input type="text" required readonly class="form-control" id="qarzi">
+    </div>
+
+    <label for="summa" class="form-label">Beriladigan summa</label>
+    <div class="input-group mb-3">
+       <span class="input-group-text">$</span>
+      <input type="text" oninput="hisob()" required class="form-control" name="berganpuli" id="summa">
+    </div>
+
+      <label for="qolganqarzi" class="form-label">Qoladigan qarzi</label>
+   <div class="mb-3 input-group">
+       <span class="input-group-text">$</span>
+      <input type="text" required readonly class="form-control" name="qolganqarzi" id="qolganqarzi">
+    </div>
+
+ <label for="phone" class="form-label">Mijoz telelfon raqami</label>
+    <div class="input-group mb-3">
+       <span class="input-group-text">+998</span>
+      <input type="text" required class="form-control" name="phone" id="phone">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Qarzini berdi</button>
+
+
+  </form>
+
+
+  <div>
+{{error}}
+</div>
+
+    <div style="color: green">
+      <h1>
+{{success}}
+        </h1>
+</div>
+
+</div>
+
+
+ <script>
+        var qarz1 = "{{qarz|escapejs}}"
+
+var array = JSON.parse(JSON.parse(JSON.stringify(qarz1)))
+
+document.getElementById('qarzi').value = array[0]['fields']['qolganqarzi']
+
+function changeFunc(e){
+  document.getElementById('qarzi').value = array[e.target.selectedIndex]['fields']['qolganqarzi']
+}
+
+function hisob(){
+
+ document.getElementById('qolganqarzi').value = document.getElementById('qarzi').value  - document.getElementById('summa').value
+
+
+}
+
+
+
+    </script>
+
+{% endblock %}

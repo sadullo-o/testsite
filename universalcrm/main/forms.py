@@ -12,4 +12,4 @@ class SotishForm(ModelForm):
 class SkladForm(ModelForm):
     class Meta:
         model = Sklad
-        fields = ['Mahsulotnomi', 'Mahsulotnarxi', 'Skalddagimahsulotsoni']
+        fields = ['tovarnomi', 'tovarnarxi', 'tovarsoni']

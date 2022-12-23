@@ -29,5 +29,32 @@ Sklad
   </tbody>
 </table>
 
+
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="firmanomi" class="form-label">Mahsulot nomi</label>
+      <input type="text" class="form-control" name="tovarnomi" id="firmanomi">
+    </div>
+
+    <label for="berilganpul" class="form-label">Mahsulot narxi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" name="tovarnarxi" id="berilganpul">
+    </div>
+    <label for="qarz" class="form-label">Mahsulot soni</label>
+    <div class=" mb-3">
+      <input type="text" class="form-control" name="tovarsoni" id="qarz">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Olish</button>
+</form>
+
+
 </div>
+
+
+
+
 {% endblock %}

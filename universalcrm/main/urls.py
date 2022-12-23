@@ -5,6 +5,7 @@ urlpatterns = [
 
     path('', main, name='home'),
     path('olish', olish, name='olish'),
-    path('sklad', skald, name='sklad'),
+    path('sklad', sklad, name='sklad'),
     path('sotish', sotish, name='sotish'),
+    path('qarz', qarz, name='qarz')
 ]

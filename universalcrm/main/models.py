@@ -60,9 +60,10 @@ class Olish(models.Model):
 
 class Qarz(models.Model):
     xaridornomi = models.CharField(max_length=100)
-    tovarnomi = models.CharField(max_length=100)
+    # tovarnomi = models.CharField(max_length=100)
+    phone = models.CharField(max_length=50, default='')
     berganpuli = models.CharField(max_length=100)
-    qolganqariz = models.CharField(max_length=100)
+    qolganqarzi = models.CharField(max_length=100)
     sana = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
