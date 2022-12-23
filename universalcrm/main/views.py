@@ -119,3 +119,7 @@ def qarz(request):
         'qarzx': qarzi
     }
     return render(request, 'main/qarz.html', context)
+
+
+
+# crmadmin  --> parol ham login ham
