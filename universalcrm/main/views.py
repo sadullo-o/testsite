@@ -40,7 +40,7 @@ def sklad(request):
 
 
 def qaytarish(request):
-    sklad = Sklad.objects.all()
+    qaytarish = Qaytarish.objects.all()
     jsonsklad = serializers.serialize('json', sklad)
     error = ''
     success1 = ''
@@ -50,20 +50,24 @@ def qaytarish(request):
         tnarx = request.POST.get('tovarnarxi')
         tsoni = request.POST.get('tovarsoni')
         jtnarxi = request.POST.get('jamitovarnarxi')
-        sana = request.POST.get('sana')
+
 
         try:
             qaytarish = qaytarish.objects.get(xaridornomi=xnomi)
             qaytarish = qaytarish.objects.get(tovarnomi=tnomi)
+            qaytarish = qaytarish.objects.get(tovarnarxi=tnarx)
+            qaytarish = qaytarish.objects.get(tovarsoni=tsoni)
+            qaytarish = qaytarish.objects.get(tovarnomi=jtnarxi)
 
-            skladtovar.tovarsoni = int(skladtovar.tovarsoni) + int(smson)
-            skladtovar.tovarnarxi = mnarxi
-            skladtovar.save()
+
+            qaytarish.skladtovar.jamitovarnarxi = int(qaytarish.tovarsoni) * int(tnarx)
+            qaytarish.skladtovar.tovarnarxi = tnarx
+            qaytarish.sklad.save()
             success1 = 'Mahsulot sotildi'
         except:
-            x = Sklad(tovarnomi=mnomi, tovarnarxi=mnarxi, tovarsoni=smson)
+            x = qaytarish(tovarnomi=tnomi, tovarnarxi=tnarx, tovarsoni=tsoni)
             x.save()
-            success1 = 'Mahsulot sotildi'
+            success1 = 'Tovar qaytarildi'
 
 
         return redirect('sklad')
