@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core import serializers
-from .models import Sklad, Sotish, Qarz
+from .models import Sklad, Sotish, Qarz, Qaytarish
 from .forms import SotishForm
 import math
 
@@ -38,6 +38,36 @@ def sklad(request):
         return redirect('sklad')
     return render(request, 'main/sklad.html', {'ss':success1, 'sklad':sklad})
 
+
+def qaytarish(request):
+    sklad = Sklad.objects.all()
+    jsonsklad = serializers.serialize('json', sklad)
+    error = ''
+    success1 = ''
+    if request.method == 'POST':
+        xnomi = request.POST.get('xaridornomi')
+        tnomi = request.POST.get('tovarnomi')
+        tnarx = request.POST.get('tovarnarxi')
+        tsoni = request.POST.get('tovarsoni')
+        jtnarxi = request.POST.get('jamitovarnarxi')
+        sana = request.POST.get('sana')
+
+        try:
+            qaytarish = qaytarish.objects.get(xaridornomi=xnomi)
+            qaytarish = qaytarish.objects.get(tovarnomi=tnomi)
+
+            skladtovar.tovarsoni = int(skladtovar.tovarsoni) + int(smson)
+            skladtovar.tovarnarxi = mnarxi
+            skladtovar.save()
+            success1 = 'Mahsulot sotildi'
+        except:
+            x = Sklad(tovarnomi=mnomi, tovarnarxi=mnarxi, tovarsoni=smson)
+            x.save()
+            success1 = 'Mahsulot sotildi'
+
+
+        return redirect('sklad')
+    return render(request, 'main/sklad.html', {'ss':success1, 'sklad':sklad})
 
 
 def sotish(request):
@@ -119,6 +149,10 @@ def qarz(request):
         'qarzx': qarzi
     }
     return render(request, 'main/qarz.html', context)
+
+
+#def qaytarish(request):
+
 
 
 
