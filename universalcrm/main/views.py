@@ -65,8 +65,8 @@ def qaytarish(request):
             qaytarish.sklad.save()
             success1 = 'Mahsulot sotildi'
         except:
-            x = qaytarish(tovarnomi=tnomi, tovarnarxi=tnarx, tovarsoni=tsoni)
-            x.save()
+            y = qaytarish(tovarnomi=tnomi, tovarnarxi=tnarx, tovarsoni=tsoni)
+            y.save()
             success1 = 'Tovar qaytarildi'
 
 
