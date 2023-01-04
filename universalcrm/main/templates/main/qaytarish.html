@@ -1,0 +1,110 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Mijoz mahsulot qaytarishi
+{%endblock%}
+
+{% block content %}
+
+<div class="container">
+  <h1>Mijoz mahsulot qaytarishi</h1>
+
+  <form method="post">
+    {% csrf_token %}
+          <label for="mijoz" class="form-label">Mijoz nomi</label>
+      <select class="form-control" onchange="changeFunc(event)" name="xaridornomi" id="mijoz">
+        {% for i in sotilgan %}
+          <option>{{i.xaridornomi}}</option>
+        {% endfor %}
+      </select>
+
+        <label for="mijoz" class="form-label">Malumot</label>
+      <select class="form-control">
+        {% for i in sotilgan %}
+          <option>{{i.xaridornomi}} --> {{i.tovarnomi}} --> {{i.tovarsoni}} ta</option>
+        {% endfor %}
+      </select>
+
+          <label for="tovar" class="form-label">Tovar nomi</label>
+      <div class="mb-3">
+       <input type="text" required readonly class="form-control" name="tovarnomi" id="tovar">
+    </div>
+
+
+    <label for="summa" class="form-label">Nechta qaytarmoqchi</label>
+    <div class="input-group mb-3">
+       <span class="input-group-text">#</span>
+      <input type="text" oninput="hisob()" required class="form-control" name="tovarsoni" id="summa">
+    </div>
+
+
+      <label for="tovarnarxi" class="form-label">Tovar narxi</label>
+   <div class="mb-3 input-group">
+       <span class="input-group-text">$</span>
+      <input type="text" required readonly class="form-control" name="tovarnarxi" id="tovarnarxi">
+    </div>
+
+        <label for="jamitovarnarxi" class="form-label">Jami tovar narxi</label>
+   <div class="mb-3 input-group">
+       <span class="input-group-text">$</span>
+      <input type="text" required readonly class="form-control" name="jamitovarnarxi" id="jamitovarnarxi">
+    </div>
+
+ <label for="tovarnarxi" class="form-label">Qarzi</label>
+   <div class="mb-3 input-group">
+       <span class="input-group-text">$</span>
+      <input type="text" required readonly class="form-control" id="qarz">
+    </div>
+
+
+      <label for="pul" class="form-label">Beriladigan pul</label>
+   <div class="mb-3 input-group">
+       <span class="input-group-text">$</span>
+      <input type="text" required readonly class="form-control" name="beriladiganpul" id="pul">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Qaytarib berdi</button>
+
+
+  </form>
+
+
+  <div>
+{{error}}
+</div>
+
+    <div style="color: green">
+      <h1>
+{{success}}
+        </h1>
+</div>
+
+</div>
+
+
+ <script>
+        var qarz1 = "{{jsonsotilgan|escapejs}}"
+
+var array = JSON.parse(JSON.parse(JSON.stringify(qarz1)))
+
+document.getElementById('qarzi').value = array[0]['fields']['qolganqarzi']
+
+function changeFunc(e){
+  document.getElementById('tovar').value = array[e.target.selectedIndex]['fields']['tovarnomi']
+  document.getElementById('tovarnarxi').value = array[e.target.selectedIndex]['fields']['tovarnarxi']
+    document.getElementById('qarz').value = array[e.target.selectedIndex]['fields']['qarz']
+}
+
+function hisob(){
+
+ document.getElementById('jamitovarnarxi').value = document.getElementById('tovarnarxi').value  * document.getElementById('summa').value
+ document.getElementById('pul').value = document.getElementById('jamitovarnarxi').value  - document.getElementById('qarz').value
+
+
+}
+
+
+
+    </script>
+
+{% endblock %}

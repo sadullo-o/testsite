@@ -77,6 +77,7 @@ class Qaytarish(models.Model):
     tovarnarxi = models.CharField(max_length=200)
     tovarsoni = models.CharField(max_length=200)
     jamitovarnarxi = models.CharField(max_length=200)
+    beriladiganpul = models.CharField(max_length=200, default='0')
     sana = models.DateTimeField(default=datetime.now())
 
     def __str__(self):

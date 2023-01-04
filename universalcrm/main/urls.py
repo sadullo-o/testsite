@@ -7,5 +7,6 @@ urlpatterns = [
     path('olish', olish, name='olish'),
     path('sklad', sklad, name='sklad'),
     path('sotish', sotish, name='sotish'),
-    path('qarz', qarz, name='qarz')
+    path('qarz', qarz, name='qarz'),
+    path('qaytarish', qaytarish, name='qaytarish')
 ]

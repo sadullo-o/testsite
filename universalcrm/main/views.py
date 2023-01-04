@@ -40,38 +40,39 @@ def sklad(request):
 
 
 def qaytarish(request):
-    qaytarish = Qaytarish.objects.all()
-    jsonsklad = serializers.serialize('json', sklad)
-    error = ''
     success1 = ''
+    sotilgan = Sotish.objects.all()
+    jsonsotilgan = serializers.serialize('json', sotilgan)
     if request.method == 'POST':
         xnomi = request.POST.get('xaridornomi')
         tnomi = request.POST.get('tovarnomi')
         tnarx = request.POST.get('tovarnarxi')
         tsoni = request.POST.get('tovarsoni')
         jtnarxi = request.POST.get('jamitovarnarxi')
+        bpul = request.POST.get('beriladiganpul')
 
 
-        try:
-            qaytarish = qaytarish.objects.get(xaridornomi=xnomi)
-            qaytarish = qaytarish.objects.get(tovarnomi=tnomi)
-            qaytarish = qaytarish.objects.get(tovarnarxi=tnarx)
-            qaytarish = qaytarish.objects.get(tovarsoni=tsoni)
-            qaytarish = qaytarish.objects.get(tovarnomi=jtnarxi)
 
+        y = Qaytarish(tovarnomi=tnomi, tovarnarxi=tnarx, tovarsoni=tsoni, jamitovarnarxi=jtnarxi, xaridornomi=xnomi,beriladiganpul=bpul)
 
-            qaytarish.skladtovar.jamitovarnarxi = int(qaytarish.tovarsoni) * int(tnarx)
-            qaytarish.skladtovar.tovarnarxi = tnarx
-            qaytarish.sklad.save()
-            success1 = 'Mahsulot sotildi'
-        except:
-            y = qaytarish(tovarnomi=tnomi, tovarnarxi=tnarx, tovarsoni=tsoni)
-            y.save()
-            success1 = 'Tovar qaytarildi'
+        qarz = Qarz.objects.get(xaridornomi=xnomi)
+        q = qarz.qolganqarzi
+        if int(jtnarxi) < int(q):
+            qarz.qolganqarzi = int(qarz.qolganqarzi) - int(jtnarxi)
+        else:
+            qarz.qolganqarzi = 0
+
+        skl = Sklad.objects.get(tovarnomi=tnomi)
+        skl.tovarsoni = int(skl.tovarsoni) + int(tsoni)
+
+        y.save()
+        qarz.save()
+        skl.save()
+        success1 = 'Tovar qaytarildi'
 
 
         return redirect('sklad')
-    return render(request, 'main/sklad.html', {'ss':success1, 'sklad':sklad})
+    return render(request, 'main/qaytarish.html', {'ss':success1, 'sklad':sklad, 'sotilgan': sotilgan, 'jsonsotilgan': jsonsotilgan})
 
 
 def sotish(request):
@@ -161,3 +162,12 @@ def qarz(request):
 
 
 # crmadmin  --> parol ham login ham
+
+
+
+# 1. Vazifa
+# sotilgan tovarlar, qarz, sklad  --> shu  modellar uchun drf bilan api chiqarish
+
+
+# 2. Vazifa
+# Chiqarilgan api link orqali telegram bot yaratish  --> sotilgan tovarlar, qarz, sklad haqida malumotlar telegramda jamlansin
